@@ -1,0 +1,1241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    
+
+
+    <style>
+        body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FDFBF6;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #3A5311;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #3A5311;
+    font-size: 18px;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #6AB04C;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 70px 100px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.text-content {
+    max-width: 500px;
+    margin-right: 20px;
+}
+
+.text-content h1 {
+    font-size: 48px;
+    color: #3A5311;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+
+.text-content p {
+    font-size: 20px;
+    color: #626262;
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.input-box {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+.input-box input {
+    padding: 14px;
+    width: 280px;
+    border: 2px solid #3A5311;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.input-box button {
+    background-color: #FF8C00;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.input-box button:hover {
+    background-color: #d67600;
+}
+
+.image-container img {
+    width: 380px;
+    border-radius: 50%;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    animation: HeaderIn  ease-out 2s;
+}
+
+/* Hamburger menu */
+.toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+    z-index: 100;
+}
+
+.toggle .bar {
+    width: 30px;
+    height: 4px;
+    margin: 5px;
+    background-color: #3A5311;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .header {
+        padding: 20px;
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .navbar {
+        display: none; /* Initially hide the navbar on mobile */
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #FDFBF6;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        padding: 20px 0;
+        transition: transform 0.4s ease-in-out;
+        transform: translateY(-100%); /* Start hidden above the screen */
+    }
+
+    .navbar.active {
+        transform: translateY(0); /* Slide down when active */
+    }
+
+    .navbar a {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    .toggle {
+        display: flex; /* Show the toggle on mobile */
+    }
+
+    /* Animation for hamburger menu (transform to 'X' shape) */
+    .toggle.open .bar:nth-child(1) {
+        transform: rotate(45deg);
+        position: absolute;
+        top: 10px; /* Yarmida ko'rinmay qolmasligi uchun yuqoriga ko'tarish */
+        width: 28px; /* Kichikroq bo'lsin */
+    }
+
+    .toggle.open .bar:nth-child(2) {
+        opacity: 0; /* Hide the middle bar */
+    }
+
+    .toggle.open .bar:nth-child(3) {
+        transform: rotate(-45deg);
+        position: absolute;
+        top: -10px; /* Yarmida ko'rinmay qolmasligi uchun yuqoriga ko'tarish */
+        width: 28px; /* Kichikroq bo'lsin */
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 40px 20px;
+        margin: 0 10px; /* Added margin to the sides */
+    }
+
+    .text-content {
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .text-content h1 {
+        font-size: 36px;
+    }
+
+    .text-content p {
+        font-size: 18px;
+    }
+
+    .input-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-box input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .input-box button {
+        width: 100%;
+    }
+
+    .image-container img {
+        width: 250px;
+    }
+}
+
+/* Show navbar when toggle is clicked */
+.navbar.active {
+    display: flex;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    width: 30%;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    background-color: #FFDAB9; /* Och sabzi rang */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h3, .card p {
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+}
+
+.card h3 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.card p {
+    font-size: 1em;
+    color: #666;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    width: 30%;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    background-color: #FFFFFF; /* Oq rang */
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 450px; /* Balandligini oshiramiz */
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h3, .card p {
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+}
+
+.card h3 {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.card p {
+    font-size: 1em;
+    color: #666;
+}
+
+.price {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.btn {
+    background-color: #FFA500; /* Sabzi rang */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 1em;
+}
+
+.btn:hover {
+    background-color: #FF8C00; /* Tugma hover holati */
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 45%;
+    }
+
+}
+
+
+
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.card {
+    animation: fadeIn 1s ease-in-out;
+}
+
+
+.service-section {
+  background-color: rgb(255, 255, 255);
+  padding: 80px 20px;
+  text-align: center;
+  height: 920px;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.service-header h2 {
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: #333;
+  animation: slideIn 1s ease-out;
+}
+
+.service-header p {
+  font-size: 22px;
+  color: #555;
+  animation: slideIn 1.5s ease-out;
+}
+
+.service-cards {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  background-color: #fff;
+  padding: 30px;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+
+
+.service-card h3 {
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.service-card p {
+  color: #777;
+  font-size: 18px;
+}
+
+.service-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* Tugma dizayni */
+.service-btn {
+  background-color: #FFA500; /* Och malla rangi */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.service-btn:hover {
+  background-color:#cf8700; /* Tugma ustida hover holatida rangni biroz qoraytirish */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
+
+.full-width-image {
+            width: 100%;
+            height: 100vh;
+            background:
+        /* top, transparent black, faked with gradient */
+        linear-gradient(
+          rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.7)
+        ),
+        /* bottom, image */
+        url('https://cdn.shopify.com/s/files/1/2149/7399/articles/shutterstock_420056392-323458.jpg?v=1631891396');
+    
+             background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+    
+        }
+
+        .logo-text {
+            font-size: 40px;
+            font-weight: bold;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .info-text {
+            font-size: 20px;
+            margin-top: 10px;
+            animation: fadeIn 2s ease-out 1s;
+        }
+
+        .btn-custom {
+            margin-top: 20px;
+            background-color: #FF8C00; /* Sabzi rangi */
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 250px; /* Uzunroq width */
+            border-radius: 5px;
+            animation: fadeIn 2s ease-out 2s;
+        }
+
+        .btn-custom:hover {
+            background-color: #e27c00;
+        }
+
+
+             /* Animatsiya */
+             @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animatsiya */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive qism */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 30px;
+            }
+
+            .info-text {
+                font-size: 18px;
+            }
+
+            .btn-custom {
+                width: 200px;
+                font-size: 16px;
+            }
+
+            .full-width-image {
+                height: 600px; /* kichik ekranlar uchun balandlikni qisqartirish */
+            }
+        }
+        @media (max-width: 1150px) {
+
+            .full-width-image {
+                margin-top: 500px;
+            }
+
+            .service-section {
+                background-color: white;
+            }
+
+
+        }
+        @media (max-width: 780px) {
+
+            .full-width-image {
+                margin-top: 900px;
+            }
+    .service-section {
+                background-color: white;
+            }
+
+
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 25px;
+            }
+
+            .info-text {
+                font-size: 16px;
+            }
+
+            .btn-custom {
+                width: 180px;
+                font-size: 14px;
+            }
+
+            .full-width-image {
+                height: 500px;
+            }
+        }
+
+
+                /* Animatsiya */
+                @keyframes HeaderIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-logo{
+            animation: HeaderIn 2s ease-out 1;
+        }
+        .header-logo-info {
+            animation: HeaderIn 2s ease-out 1.5s;
+        }
+        .input-box {
+            animation: HeaderIn 2s ease-out 2s;
+        }
+
+
+        /* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-content {
+    color: white;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    margin-top: 250px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 12px;
+    background-color: #FF8C00;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar button:hover {
+    background-color: #d87700;
+}
+
+.close-btn {
+    position: absolute;
+  top: 80px;
+  left: 2px; /* Tugmani chapga surish uchun left qiymatini o'zgartiring */
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+
+
+
+
+body {
+    background: #fbfbfd;
+}
+
+.new_footer_area {
+    background: #fbfbfd;
+}
+
+
+.new_footer_top {
+    padding: 120px 0px 270px;
+    position: relative;
+      overflow-x: hidden;
+}
+
+.footer_bottom {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    color: #7f88a6;
+
+}
+.new_footer_top .company_widget p {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 28px;
+    color: #6a7695;
+    margin-bottom: 20px;
+}
+.new_footer_top .company_widget .f_subscribe_two .btn_get {
+    border-width: 1px;
+    margin-top: 20px;
+}
+.btn_get_two:hover {
+    background: transparent;
+    color: #eb8100;
+}
+.btn_get:hover {
+    color: #fff;
+    background: #eb8100;
+    border-color: #eb8100;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+
+
+.new_footer_top .f_widget.about-widget .f_list li a:hover {
+    color: #eb8100;
+}
+.new_footer_top .f_widget.about-widget .f_list li {
+    margin-bottom: 11px;
+}
+.f_widget.about-widget .f_list li:last-child {
+    margin-bottom: 0px;
+}
+.f_widget.about-widget .f_list li {
+    margin-bottom: 15px;
+}
+.f_widget.about-widget .f_list {
+    margin-bottom: 0px;
+}
+.new_footer_top .f_social_icon a {
+    width: 44px;
+    height: 44px;
+    line-height: 43px;
+    background: transparent;
+    border: 1px solid #e2e2eb;
+    font-size: 24px;
+}
+.f_social_icon a {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 14px;
+    line-height: 45px;
+    color: #858da8;
+    display: inline-block;
+    background: #ebeef5;
+    text-align: center;
+    -webkit-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+.ti-facebook:before {
+    content: "\e741";
+}
+.ti-twitter-alt:before {
+    content: "\e74b";
+}
+.ti-vimeo-alt:before {
+    content: "\e74a";
+}
+.ti-pinterest:before {
+    content: "\e731";
+}
+
+.btn_get_two {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: #ff8c00;
+    border-color: #ff8c00;
+    color: #fff;
+}
+
+.btn_get_two:hover {
+    background: transparent;
+    color: #e47d00;
+}
+
+.new_footer_top .f_social_icon a:hover {
+    background: #e47d00;
+    border-color: #e47d00;
+  color:white;
+}
+.new_footer_top .f_social_icon a + a {
+    margin-left: 4px;
+}
+.new_footer_top .f-title {
+    margin-bottom: 30px;
+    color: #263b5e;
+}
+.f_600 {
+    font-weight: 600;
+}
+.f_size_18 {
+    font-size: 18px;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #4b505e;
+}
+.new_footer_top .f_widget.about-widget .f_list li a {
+    color: #6a7695;
+}
+
+
+.new_footer_top .footer_bg {
+    position: absolute;
+    bottom: 0;
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigB8iI5tb8WSVBuVUGc9UjjB8O0708X7Fdic_4O1LT4CmLHoiwhanLXiRhe82yw0R7LgACQ2IhZaTY0hhmGi0gYp_Ynb49CVzfmXtYHUVKgXXpWvJ_oYT8cB4vzsnJLe3iCwuzj-w6PeYq_JaHmy_CoGoa6nw0FBo-2xLdOPvsLTh_fmYH2xhkaZ-OGQ/s16000/footer_bg.png") no-repeat scroll center 0;
+    width: 100%;
+    height: 266px;
+}
+
+.new_footer_top .footer_bg .footer_bg_one {
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia0PYPxwT5ifToyP3SNZeQWfJEWrUENYA5IXM6sN5vLwAKvaJS1pQVu8mOFFUa_ET4JuHNTFAxKURFerJYHDUWXLXl1vDofYXuij45JZelYOjEFoCOn7E6Vxu0fwV7ACPzArcno1rYuVxGB7JY6G7__e4_KZW4lTYIaHSLVaVLzklZBLZnQw047oq5-Q/s16000/volks.gif") no-repeat center center;
+    width: 330px;
+    height: 105px;
+  background-size:100%;
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    -webkit-animation: myfirst 22s linear infinite;
+    animation: myfirst 22s linear infinite;
+}
+
+.new_footer_top .footer_bg .footer_bg_two {
+    background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyLGwEUVwPK6Vi8xXMymsc-ZXVwLWyXhogZxbcXQYSY55REw_0D4VTQnsVzCrL7nsyjd0P7RVOI5NKJbQ75koZIalD8mqbMquP20fL3DxsWngKkOLOzoOf9sMuxlbyfkIBTsDw5WFUj-YJiI50yzgVjF8cZPHhEjkOP_PRTQXDHEq8AyWpBiJdN9SfQA/s16000/cyclist.gif") no-repeat center center;
+    width: 88px;
+    height: 100px;
+  background-size:100%;
+    bottom: 0;
+    left: 38%;
+    position: absolute;
+    -webkit-animation: myfirst 30s linear infinite;
+    animation: myfirst 30s linear infinite;
+}
+
+
+
+@-moz-keyframes myfirst {
+  0% {
+    left: -25%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@-webkit-keyframes myfirst {
+  0% {
+    left: -25%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes myfirst {
+  0% {
+    left: -25%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/*************footer End*****************/
+
+
+
+
+
+    </style>
+
+
+    <!-- Header section with navigation bar -->
+    <header class="header navbar-expand-lg fixed-top bg-light">
+        <img src="assets/images/l8tUG-lgRzcOAU-S_Vbeo0jrWZj_9WEMj1PZfSEyTC40ux_Jh1Fc1fWhDR_S9i8NnToH6soWx9QQ-7rBwq54y1yH.jpg" alt="">
+        <!-- Logo section -->
+        <div class="logo">PizzaCraft 🍕</div>
+        
+        <!-- Navigation menu -->
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#service">Services</a>
+            <a href="#Sidebar">Sign In</a>
+        </nav>
+
+        <!-- Toggle button for responsive menu -->
+        <div class="toggle" id="toggle-btn">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+    
+    <!-- Spacing to push content below fixed header -->
+    <br><br><br><br><br><br>
+    
+    <!-- Home section -->
+    <div id="home" class="container">
+        
+        <!-- Text content section -->
+        <div class="text-content">
+            <h1 class="header-logo">Experience the Best <br> Taste with Figo.</h1>
+            <p class="header-logo-info">Discover delicious recipes made with love and fresh ingredients. Enjoy an unforgettable culinary journey with our carefully curated dishes.</p>
+            
+            <!-- Search input and button -->
+            <div class="input-box">
+                <input type="text" placeholder="Search">
+                <button>Learn more</button>
+            </div>
+        </div>
+        
+        <!-- Image section -->
+        <div class="image-container">
+            <img src="https://cdn.foodpicasso.com/assets/2021/01/31/e5fffdb215c9d37cdc67b57b85330673---png_1000x_103c0_convert.png" alt="Food Image">
+        </div>
+    </div>
+    
+    <!-- Extra spacing below the section -->
+    <br><br><br><br><br><br><br><br><br><br><br>
+   <!-- Menu section with different food items -->
+   <div id="menu" class="menu-container">
+        
+    <!-- Hamburger Card -->
+    <div class="card">
+        <img src="https://www.popsci.com/wp-content/uploads/2019/11/07/QDAYJRT4D5BFNNI72QBPU73BDQ.jpg" alt="Recipe 1">
+        <h3>Hamburger</h3>
+        <p>This type of food is fast food, meaning it is a food that is prepared quickly, this food is very popular in America.</p>
+        <p class="price">$4.99</p>
+        <button class="btn">Order Now</button>
+    </div>
+    
+    <!-- Pizza Card -->
+    <div class="card">
+        <img src="https://avatars.mds.yandex.net/i?id=cf648f91a6d80312306a5a7e148cf843_l-4628448-images-thumbs&n=13" alt="Recipe 2">
+        <h3>Pizza</h3>
+        <p>This type of food is a slow-cooked dish, meaning it is a dish cooked slowly and very popular in restaurants.</p>
+        <p class="price">$10.99</p>
+        <button class="btn">Order Now</button>
+    </div>
+    
+    <!-- Fish and Chips Card -->
+    <div class="card">
+        <img src="https://blog.modernistpantry.com/wp-content/uploads/2024/02/shutterstock_2345338047-scaled.jpg" alt="Recipe 3">
+        <h3>Fish and Chips</h3>
+        <p>Fish and Chips is a nutritious dish with protein-rich fish and energy-packed chips, served with vegetables or sauces.</p>
+        <p class="price">$9.99</p>
+        <button class="btn">Order Now</button>
+    </div>
+    
+    <!-- Shepherd’s Pie Card -->
+    <div class="card">
+        <img src="https://i.pinimg.com/736x/6d/31/04/6d31047e1be4154622d71331c3a79edf.jpg" alt="Recipe 4">
+        <h3>Shepherd’s Pie</h3>
+        <p>Shepherd’s Pie is a traditional British dish with minced meat, vegetables, and mashed potatoes baked until golden.</p>
+        <p class="price">$11.99</p>
+        <button class="btn">Order Now</button>
+    </div>
+    
+    <!-- Sunday Roast Card -->
+    <div class="card">
+        <img src="https://as1.ftcdn.net/v2/jpg/02/32/60/88/1000_F_232608820_AGHgKtkOY4lXidGdI502igOjp1cMPPcP.jpg" alt="Recipe 5">
+        <h3>Sunday Roast</h3>
+        <p>Sunday Roast is a traditional British meal with meat, potatoes, vegetables, and gravy, often served on Sundays.</p>
+        <p class="price">$10.99</p>
+        <button class="btn">Order Now</button>
+    </div>
+    
+    <!-- Beef Wellington Card -->
+    <div class="card">
+        <img src="https://avatars.dzeninfra.ru/get-zen_doc/9348320/pub_64244f08c53c9764ec0b8750_64244f80d2677b5cfed1ee6f/scale_1200" alt="Recipe 6">
+        <h3>Beef Wellington</h3>
+        <p>Beef Wellington is a luxurious dish made Lorem, ipsum dolor. with beef tenderloin, coated in mushroom duxelles.</p>
+        <p class="price">$8.99</p>
+        <button class="btn">Order Now</button>
+    </div>
+</div>
+
+<!-- Extra spacing below the menu section -->
+<br><br><br><br><br><br>
+
+
+
+<!-- Service section showcasing food-related offerings -->
+
+<div id="service" class="service-section">
+
+    <!-- Section header -->
+    <div class="service-header">
+        <h2>Our Services</h2>
+        <p>Explore our exclusive food offerings from top restaurants.</p>
+    </div>
+
+    <div class="service-cards">
+
+        <!-- Recipe service -->
+        <div class="service-card">
+            <img src="https://avatars.mds.yandex.net/i?id=3a37a6a2d5bdd5c3b1ed7847a90742f3_l-5235582-images-thumbs&n=13" alt="Delicious Recipes" class="service-image">
+            <h3>Delicious Recipes</h3>
+            <p>Get the best recipes to cook at home with ease.</p>
+            <button class="service-btn">Learn More</button>
+        </div>
+
+        <!-- Top restaurants service -->
+        <div class="service-card">
+            <img src="https://avatars.mds.yandex.net/i?id=8fba7c23f93ae01c73d93955b201adc0da133ef6-9570000-images-thumbs&n=13" alt="Top Restaurants" class="service-image">
+            <h3>Top Restaurants</h3>
+            <p>Discover the finest dining experiences worldwide.</p>
+            <button class="service-btn">Learn More</button>
+        </div>
+
+        <!-- User feedback section -->
+        <div class="service-card">
+            <img src="https://sun1-25.userapi.com/impg/9V3zejoMUQu3OXJPGQoF-RRzkvyfBmsRbj0XPA/I2CBY54iwiA.jpg?size=807x539&quality=96&sign=3c8a8dbb000a7a70cbe1b5ab6586bdec&c_uniq_tag=CZv2LbrA18Y7XdOhIyBciZbZYnXKPYynBXEcfFrTNJ4&type=album" alt="User Feedback" class="service-image">
+            <h3>User Feedback</h3>
+            <p>Leave your review and see others’ opinions.</p>
+            <button class="service-btn">Learn More</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Full-width section for sign-in with a sidebar login form -->
+
+<div class="full-width-image">
+
+    <!-- Sign-in title -->
+    <div class="logo-text">Sign In</div><br>
+
+    <!-- Information text for registration -->
+    <div class="info-text">
+        You can register here. If you want to register, be sure <br> 
+        to click the register button.
+    </div><br>
+
+    <!-- Sign-in button to open the sidebar -->
+    <button class="btn-custom" id="openSidebar">Sign In</button>
+
+    <!-- Sidebar for login -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+
+            <!-- Close button to hide the sidebar -->
+            <button class="close-btn" id="closeSidebar">X</button>
+
+            <!-- Login form inside the sidebar -->
+            <h2>Login</h2>
+            <form class="login-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Log In</button>
+            </form>
+
+        </div>
+    </div>
+
+</div><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+  <footer class="new_footer_area bg_color">
+    <div class="new_footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
+                        <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
+                        <p>Don’t miss any updates of our new templates and extensions.!</p>
+                        <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true" _lpchecked="1">
+                            <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
+                            <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
+                            <p class="mchimp-errmessage" style="display: none;"></p>
+                            <p class="mchimp-sucmessage" style="display: none;"></p>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
+                        <h3 class="f-title f_600 t_color f_size_18">Download</h3>
+                        <ul class="list-unstyled f_list">
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Android App</a></li>
+                            <li><a href="#">ios App</a></li>
+                            <li><a href="#">Desktop</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">My tasks</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
+                        <h3 class="f-title f_600 t_color f_size_18">Help</h3>
+                        <ul class="list-unstyled f_list">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Term &amp; conditions</a></li>
+                            <li><a href="#">Reporting</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Support Policy</a></li>
+                            <li><a href="#">Privacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
+                        <h3 class="f-title f_600 t_color f_size_18">Team Solutions</h3>
+                        <div class="f_social_icon">
+                            <a href="#" class="fab fa-facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                              </svg></a>
+                            <a href="#" class="fab fa-twitter"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15"/>
+                              </svg></a>
+                            <a href="#" class="fab fa-linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                              </svg></a>
+                            <a href="#" class="fab fa-pinterest"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                              </svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-sm-7">
+                    <p class="mb-0 f_400">© cakecounter Inc.. 2019 All rights reserved.</p>
+                </div>
+                <div class="col-lg-6 col-sm-5 text-right">
+                    <p>Made with <i class="icon_heart"></i> in <a href="http://cakecounter.com" target="_blank">CakeCounter</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+    <script>// Toggle menu functionality
+        const toggleBtn = document.getElementById('toggle-btn');
+        const navbar = document.querySelector('.navbar');
+        
+        toggleBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active'); // Show navbar
+            toggleBtn.classList.toggle('open'); // Hamburger menu animation
+        });
+        
+        // Card rotation functionality
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'rotateY(180deg)'; // Rotate card
+                // Additional animations or functionality can be added here
+            });
+        });
+        
+        // Service button click event with alert
+        document.querySelectorAll('.service-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('You clicked on a service button! More details coming soon :)');
+            });
+        });
+        
+        // Sidebar toggle functionality
+        const openSidebarButton = document.getElementById('openSidebar');
+        const sidebar = document.getElementById('sidebar');
+        const closeSidebarButton = document.getElementById('closeSidebar');
+        
+        openSidebarButton.addEventListener('click', function() {
+            sidebar.style.width = '100%'; // Open the sidebar
+        });
+        
+        closeSidebarButton.addEventListener('click', function() {
+            sidebar.style.width = '0'; // Close the sidebar
+        });
+        
+
+    </script>
+</body>
+</html>
